@@ -1,4 +1,5 @@
 from flask import Flask, request
+import os  # Імпортуємо модуль os
 
 app = Flask(__name__)
 
@@ -8,4 +9,5 @@ def show_ip():
     return f"<h1>Your IP address is: {user_ip}</h1>"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Отримуємо порт з середовища
+    app.run(host="0.0.0.0", port=port)  # Використовуємо отриманий порт
